@@ -2,13 +2,9 @@
 package VIEW;
 
 import DAO.UsuarioDAO;
-import DTO.ConteudoDTO;
 import DTO.UsuarioDTO;
-import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -138,17 +134,7 @@ public class frmFrontal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        ConteudoDTO conteudo = new ConteudoDTO ();
-        int i;
-        try {
-            i=conteudo.obterLinhas("1");
-            String valores []= conteudo.conteudoIng("1");
-            for (String valore : valores) {
-                System.out.println(valore);  
-            }
-        } catch (FileNotFoundException ex) {
-        }
-        
+       
         try {
             String usuario, senha;
             usuario = txtUsuario.getText();
@@ -163,7 +149,11 @@ public class frmFrontal extends javax.swing.JFrame {
             if(rsusuariodao.next()){//UsuarioCorreto
                 JOptionPane.showMessageDialog(null, "Bem vindo!");
                 this.setVisible(false);
-                new frmInglesMain().setVisible(true);
+                frmInglesMain frm = new frmInglesMain();
+                frm.setVisible(true);
+                frm.cod= usuariodao.obterCod(usuariodto);
+                
+                
             }
             else{
                 JOptionPane.showMessageDialog(null, "Usuario ou senha inválida!");

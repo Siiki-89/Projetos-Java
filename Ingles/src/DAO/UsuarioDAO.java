@@ -16,8 +16,9 @@ public class UsuarioDAO {
     public void cadastrarUsuario(UsuarioDTO usuariodto){
         String sql = "insert into usuario (usuario_nome,usuario_senha,usuario_email) values (?,?,?)";
         
-        conn = new ConexaoDAO().conectaBD();
+        
         try {
+            conn = new ConexaoDAO().conectaBD();
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, usuariodto.getNomeUsuario());
             pstm.setString(2, usuariodto.getSenhaUsuario());
@@ -28,7 +29,7 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "UsuarioDAO " + erro);
         }
     }
-    public ResultSet conferirUsuario(UsuarioDTO usuariodto){
+    public ResultSet conferirUsuario(UsuarioDTO usuariodto) {
         conn = new ConexaoDAO().conectaBD();
         try{
             String sql = "select * from usuario where usuario_nome = ? and usuario_senha = ? ";
@@ -43,7 +44,7 @@ public class UsuarioDAO {
             return null;
         } 
     }
-    public ResultSet conferirEmail (UsuarioDTO usuariodto){
+    public ResultSet conferirEmail (UsuarioDTO usuariodto) {
         conn = new ConexaoDAO().conectaBD();
         try {
             String sql = "select * from usuario where usuario_nome = ? and usuario_email = ?";
@@ -57,7 +58,7 @@ public class UsuarioDAO {
             return null;
         }
     }
-    public void alterarSenha(UsuarioDTO usuariodto){
+    public void alterarSenha(UsuarioDTO usuariodto) {
         conn = new ConexaoDAO().conectaBD();
 
         try {
@@ -71,6 +72,23 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "UsuarioDAO " + erro);
         }
             
+    }
+    public int obterCod(UsuarioDTO usuariodto){
+        conn = new ConexaoDAO().conectaBD();
+        int valor = 0;
+        try {
+            String sql = "SELECT cod_usuario FROM usuario WHERE usuario_nome = ?";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, usuariodto.getNomeUsuario());
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                valor = rs.getInt(1);
+            }
+            return valor;
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "UsuarioDAO " +erro);
+        }
+        return 0;
     }
     
 }

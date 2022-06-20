@@ -1,0 +1,15 @@
+
+admim,,admim
+<<<<<<< Updated upstream
+Roberto,123,123
+dasdas,23,dasdas
+=======
+alexandre,4141,123
+xande,444,123
+xandinho,444,123
+romeu,444,123
+zezinho,44,123
+Vinicius,444,123
+lores,444,123
+lucas,997600914,987654321
+>>>>>>> Stashed changes

@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 
 
 public class ConexaoDAO {
-    public Connection conectaBD(){
+    public Connection conectaBD() {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/ingles?&autoReconnect=true&useSSL=false&user=root&password=Paradoxo725";
+            String url = "jdbc:mysql://localhost:3306/ingles?&useTimezone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false&user=root&password=]";
             conn= DriverManager.getConnection(url);
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,"Conexão " + erro.getMessage());

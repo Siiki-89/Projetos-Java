@@ -3,12 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package VIEW;
+import DTO.ConteudoDTO;
 import java.awt.Graphics; 
 import java.awt.Image; 
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 public class frmInglesMain extends javax.swing.JFrame {
+    int ex1 = 0;
+    int cod= 0;
     public frmInglesMain() {
         initComponents();
+        pnlPrimario.setVisible(true);
+        pnl1.setVisible(false);
+        pnl2.setVisible(false);
     }
 
     /**
@@ -32,11 +42,24 @@ public class frmInglesMain extends javax.swing.JFrame {
         btnEX2 = new javax.swing.JButton();
         btnEX3 = new javax.swing.JButton();
         pnls = new javax.swing.JPanel();
+        pnlPrimario = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         pnl1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        pnl2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaEX1P1 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaEX1FU = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        pnl3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        pnl2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -49,6 +72,9 @@ public class frmInglesMain extends javax.swing.JFrame {
         btnEX1.setBackground(new java.awt.Color(255, 255, 255));
         btnEX1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEX1.setText("EX1");
+        btnEX1.setAutoscrolls(true);
+        btnEX1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), null));
+        btnEX1.setContentAreaFilled(false);
         btnEX1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEX1MouseClicked(evt);
@@ -63,6 +89,9 @@ public class frmInglesMain extends javax.swing.JFrame {
         btnEX2.setBackground(new java.awt.Color(255, 255, 255));
         btnEX2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEX2.setText("EX2");
+        btnEX2.setAutoscrolls(true);
+        btnEX2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), null));
+        btnEX2.setContentAreaFilled(false);
         btnEX2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEX2MouseClicked(evt);
@@ -77,6 +106,9 @@ public class frmInglesMain extends javax.swing.JFrame {
         btnEX3.setBackground(new java.awt.Color(255, 255, 255));
         btnEX3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEX3.setText("EX3");
+        btnEX3.setAutoscrolls(true);
+        btnEX3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), null));
+        btnEX3.setContentAreaFilled(false);
         btnEX3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEX3MouseClicked(evt);
@@ -95,9 +127,9 @@ public class frmInglesMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEX2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(btnEX3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(btnEX1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEX1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(btnEX2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEX3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,59 +137,122 @@ public class frmInglesMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEX1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEX2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEX3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(351, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jTextField2.setText("teste");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
+        jLabel7.setText("< Inglês do Xande >");
+
+        javax.swing.GroupLayout pnlPrimarioLayout = new javax.swing.GroupLayout(pnlPrimario);
+        pnlPrimario.setLayout(pnlPrimarioLayout);
+        pnlPrimarioLayout.setHorizontalGroup(
+            pnlPrimarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrimarioLayout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(jLabel7)
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+        pnlPrimarioLayout.setVerticalGroup(
+            pnlPrimarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrimarioLayout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(jLabel7)
+                .addContainerGap(225, Short.MAX_VALUE))
+        );
+
+        pnl1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtAreaEX1P1.setColumns(20);
+        txtAreaEX1P1.setFont(new java.awt.Font("Consolas", 0, 13));
+        txtAreaEX1P1.setRows(5);
+        txtAreaEX1P1.setBorder(null);
+        txtAreaEX1P1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane2.setViewportView(txtAreaEX1P1);
+
+        pnl1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 40, 333, 410));
+
+        txtAreaEX1FU.setColumns(20);
+        txtAreaEX1FU.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtAreaEX1FU.setRows(5);
+        jScrollPane1.setViewportView(txtAreaEX1FU);
+
+        pnl1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 293, 363, 160));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jLabel3.setText("Frases úteis");
+        pnl1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jLabel2.setText("Verbos / Palavras novas");
+        pnl1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 11, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jLabel1.setText("Aqui é onde daremos inicio a tudo. ");
+        pnl1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 40, -1, 28));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setText("Leia atentamente as \"Frases úteis\" e \"Verbos / Palavras novas\"");
+        pnl1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 79, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setText("para que assim, clique no botão de começar onde terá algumas");
+        pnl1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setText("frases para fixar as palavras aprendidas");
+        pnl1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 121, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        jButton1.setText("Começar");
+        jButton1.setBorderPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+        pnl1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 173, 150, 42));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
-        pnl1.setLayout(pnl1Layout);
-        pnl1Layout.setHorizontalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl1Layout.createSequentialGroup()
-                .addGap(280, 280, 280)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(343, Short.MAX_VALUE))
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnl1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setPreferredSize(new java.awt.Dimension(150, 4));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        pnl1Layout.setVerticalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl1Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel1.setText("TESTE 1");
+        pnl1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 150, -1));
 
-        javax.swing.GroupLayout pnl2Layout = new javax.swing.GroupLayout(pnl2);
-        pnl2.setLayout(pnl2Layout);
-        pnl2Layout.setHorizontalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl2Layout.createSequentialGroup()
-                .addGap(278, 278, 278)
-                .addComponent(jLabel1)
-                .addContainerGap(351, Short.MAX_VALUE))
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setPreferredSize(new java.awt.Dimension(250, 4));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        pnl2Layout.setVerticalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl2Layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(jLabel1)
-                .addContainerGap(227, Short.MAX_VALUE))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        pnl1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jTextField1.setText("teste");
@@ -167,40 +262,54 @@ public class frmInglesMain extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnl3Layout = new javax.swing.GroupLayout(pnl3);
-        pnl3.setLayout(pnl3Layout);
-        pnl3Layout.setHorizontalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl2Layout = new javax.swing.GroupLayout(pnl2);
+        pnl2.setLayout(pnl2Layout);
+        pnl2Layout.setHorizontalGroup(
+            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl2Layout.createSequentialGroup()
                 .addGap(274, 274, 274)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
-        pnl3Layout.setVerticalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl3Layout.createSequentialGroup()
+        pnl2Layout.setVerticalGroup(
+            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl2Layout.createSequentialGroup()
                 .addGap(208, 208, 208)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlsLayout = new javax.swing.GroupLayout(pnls);
         pnls.setLayout(pnlsLayout);
         pnlsLayout.setHorizontalGroup(
             pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlsLayout.createSequentialGroup()
+                    .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnl3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlsLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPrimario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlsLayout.setVerticalGroup(
             pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 481, Short.MAX_VALUE)
+            .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlsLayout.createSequentialGroup()
+                    .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 21, Short.MAX_VALUE)))
             .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlsLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPrimario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         getContentPane().add(pnls, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 720, 470));
@@ -210,9 +319,37 @@ public class frmInglesMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEX1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEX1ActionPerformed
+        pnlPrimario.setVisible(false);
+        
         pnl1.setVisible(true);
         pnl2.setVisible(false);
-        pnl3.setVisible(false);
+        ConteudoDTO conteudo = new ConteudoDTO ();
+        int i;
+        try {
+            List<String> valores= conteudo.lerFrase("1P");
+            String contemValores= "";
+            if(ex1==0){
+                ex1++;
+                for (String valore : valores) {
+                    contemValores = contemValores + "\n" + valore;
+                }
+            }
+            txtAreaEX1P1.append(contemValores);
+            valores.clear();
+        } catch (FileNotFoundException ex) {
+        }
+        try {
+            List<String> vlrFrasesUteis= conteudo.lerFrase("1FU");
+            String contemValores= "";
+            if(ex1==1){
+                ex1++;
+                for (String valore : vlrFrasesUteis) {
+                    contemValores = contemValores + "\n" + valore;
+                }
+            }
+            txtAreaEX1FU.append(contemValores);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnEX1ActionPerformed
 
     private void btnEX1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEX1MouseClicked
@@ -223,18 +360,14 @@ public class frmInglesMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void btnEX2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEX2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEX2MouseClicked
 
     private void btnEX2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEX2ActionPerformed
+        pnlPrimario.setVisible(false);
         pnl1.setVisible(false);
         pnl2.setVisible(true);
-        pnl3.setVisible(false);
     }//GEN-LAST:event_btnEX2ActionPerformed
 
     private void btnEX3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEX3MouseClicked
@@ -242,10 +375,31 @@ public class frmInglesMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEX3MouseClicked
 
     private void btnEX3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEX3ActionPerformed
-        pnl1.setVisible(false);
-        pnl2.setVisible(false);
-        pnl3.setVisible(true);
+
     }//GEN-LAST:event_btnEX3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ConteudoDTO cont = new ConteudoDTO();
+        int contador=0;
+        try {
+            contador = cont.obterLinhas("1");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmInglesMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            System.out.println(cod);
+            frmQuestoes frmQ = new frmQuestoes();
+            frmQ.setVisible(true);
+            frmQ.usuario = this.cod;
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmInglesMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(frmInglesMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,13 +440,26 @@ public class frmInglesMain extends javax.swing.JFrame {
     private javax.swing.JButton btnEX1;
     private javax.swing.JButton btnEX2;
     private javax.swing.JButton btnEX3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
-    private javax.swing.JPanel pnl3;
+    private javax.swing.JPanel pnlPrimario;
     private javax.swing.JPanel pnls;
+    private javax.swing.JTextArea txtAreaEX1FU;
+    private javax.swing.JTextArea txtAreaEX1P1;
     // End of variables declaration//GEN-END:variables
 }
