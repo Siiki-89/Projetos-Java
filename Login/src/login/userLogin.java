@@ -45,7 +45,6 @@ public class userLogin {
                         usuario=true;   
                     }
                 }
-                
             }
             arq.close();
             if(achou==true){
@@ -69,6 +68,7 @@ public class userLogin {
         String tempFile="temp.txt";
         File oldFile= new File(users);
         File newFile= new File(tempFile);
+        int cont=0;
 
         String tempNome="", tempTelefone="",tempSenha="";
         try{
@@ -82,12 +82,22 @@ public class userLogin {
                 tempNome=arq.next();
                 tempTelefone=arq.next();  
                 tempSenha=arq.next();
-                if(tempNome.trim().equals(nome)&&tempTelefone.trim().equals(telefone)){
-                    pw.print("\n"+nome+","+telefone+","+senha);
+                if (cont==0){
+                    if(tempNome.trim().equals(nome)&&tempTelefone.trim().equals(telefone)){
+                        pw.print(nome+","+telefone+","+senha);
+                    }
+                    else{
+                        pw.print(tempNome+","+tempTelefone+","+tempSenha);
+                    }
+                } else {
+                    if(tempNome.trim().equals(nome)&&tempTelefone.trim().equals(telefone)){
+                        pw.print("\n"+nome+","+telefone+","+senha);
+                    }
+                    else{
+                        pw.print("\n"+tempNome+","+tempTelefone+","+tempSenha);
+                    }
                 }
-                else{
-                    pw.print("\n"+tempNome+","+tempTelefone+","+tempSenha);
-                }
+                cont++;
             }
             arq.close();
             pw.flush();
