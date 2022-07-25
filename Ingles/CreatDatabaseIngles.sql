@@ -14,5 +14,5 @@ CREATE TABLE exame (
 	descr_exame VARCHAR(5) NOT NULL,
 	PRIMARY KEY (ID),
 	INDEX cod_usuario (cod_usuario),
-	FOREIGN KEY (cod_usuario) REFERENCES usuario (cod_usuario);
+	FOREIGN KEY (cod_usuario) REFERENCES usuario (cod_usuario));
 
